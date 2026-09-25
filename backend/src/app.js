@@ -4,9 +4,9 @@ require('dotenv').config(); // Carga las variables de entorno (.env).
 
 // Importa todos los módulos de rutas.
 const authRoutes = require('./routes/authRoutes');
-const vehiculoRoutes = require('./routes/vehiculoRoutes');
-const tarifaRoutes = require('./routes/tarifaRoutes');
-const reporteRoutes = require('./routes/reporteRoutes');
+// const vehiculoRoutes = require('./routes/vehiculoRoutes');
+// const tarifaRoutes = require('./routes/tarifaRoutes');
+// const reporteRoutes = require('./routes/reporteRoutes');
 const historialRoutes = require('./routes/historialRoutes');
 const empleadoRoutes = require('./routes/empleadoRoutes');
 
@@ -20,9 +20,9 @@ app.use(express.json()); // parsea el body de las peticiones con Content-Type JS
 
 // POST /api/auth/login → authRoutes
 app.use('/api/auth', authRoutes); // app.use(prefijo, router): todo lo del router se ejecuta
-app.use('/api/vehiculos', vehiculoRoutes);
-app.use('/api/tarifas', tarifaRoutes);
-app.use('/api/reportes', reporteRoutes);
+// app.use('/api/vehiculos', vehiculoRoutes);
+// app.use('/api/tarifas', tarifaRoutes);
+// app.use('/api/reportes', reporteRoutes);
 app.use('/api/historial', historialRoutes);
 app.use('/api/empleados', empleadoRoutes);
 
