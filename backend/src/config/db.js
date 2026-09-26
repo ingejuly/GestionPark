@@ -1,33 +1,26 @@
-// backend/src/config/db.js
 const mysql = require('mysql2');
 require('dotenv').config();
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
-    port: 3307,  // <-- Puerto de XAMPP
-    user: 'root',
-    password: '',
-    database: 'smartpark',
+    port: 3306,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'smartpark',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
 });
 
-const promisePool = pool.promise();
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error('Error al conectar a MySQL:');
+        console.error('Detalle:', err.message);
+        return;
+    }
 
-// Probar conexión
-promisePool.getConnection()
-    .then(conn => {
-        console.log('Conectado a la base de datos MySQL');
-        conn.release();
-    })
-    .catch(err => {
-        console.error('Error al conectar a MySQL:', err.message);
-        console.error('Verifica:');
-        console.error('   - Puerto: 3307');
-        console.error('   - Usuario: root');
-        console.error('   - Contraseña: (vacío)');
-        console.error('   - Base de datos: smartpark');
-    });
+    console.log('Conexión a MySQL establecida correctamente.');
+    connection.release();
+});
 
-module.exports = promisePool;
+module.exports = pool.promise();

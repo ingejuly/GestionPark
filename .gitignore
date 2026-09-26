@@ -48,4 +48,4 @@ generar-txt.ps1
 
 # Archivos de texto generados
 proyecto_completo.txt
-*.txt
+.env
